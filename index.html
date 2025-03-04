@@ -115,11 +115,29 @@
       <i class="fas fa-laptop"></i> Layanan Jasa Joki & Servis PC Ringan
   </header>
 <nav data-aos="fade-down" data-aos-delay="200">
-        <a href="#layanan"><i class="fas fa-tools"></i> Layanan</a>
-        <a href="#review"><i class="fas fa-star"></i> Review</a>
-        <a href="#kontak"><i class="fas fa-phone"></i> Kontak</a>
-        <a href="https://wa.me/6282328143785" target="_blank"><i class="fas fa-comments"></i> Konsultasi</a>
+    <a href="#layanan" class="nav-box"><i class="fas fa-tools"></i> Layanan</a>
+    <a href="#review" class="nav-box"><i class="fas fa-star"></i> Review</a>
+    <a href="#kontak" class="nav-box"><i class="fas fa-phone"></i> Kontak</a>
+    <a href="https://wa.me/6282328143785" target="_blank" class="nav-box"><i class="fas fa-comments"></i> Konsultasi</a>
 </nav>
+<style>
+    .nav-box {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #1a73e8;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        margin: 5px;
+        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-box:hover {
+        background: #0f5fc2;
+        transform: scale(1.05);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
   <section id="deskripsi" data-aos="fade-up" data-aos-delay="400">
       <h2>Tentang Kami</h2>
       <p>Kami menyediakan jasa joki tugas dan servis PC ringan dengan layanan yang cepat, terpercaya, dan berkualitas.</p>
@@ -225,17 +243,45 @@
       &copy; 2025 Jasa Joki & Servis PC Ringan
   </footer>
 
-  <!-- AOS Library JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-      AOS.init({
-          duration: 1000,
-          once: true
-      });
-      
-      function redirectWA() {
-          window.location.href = 'https://wa.me/6282328143785';
-      }
-  </script>
+<!-- AOS Library JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+        AOS.init({
+                duration: 1000,
+                once: true
+        });
+        
+        function redirectWA() {
+                window.location.href = 'https://wa.me/6282328143785';
+        }
+</script>
+
+<!-- WhatsApp Floating Button -->
+<style>
+        .whatsapp-float {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #25d366;
+                color: white;
+                border-radius: 50px;
+                padding: 10px 20px;
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+                transform: scale(1.05);
+        }
+        .whatsapp-float i {
+                margin-right: 10px;
+        }
+</style>
+<div class="whatsapp-float" onclick="redirectWA()">
+        <i class="fab fa-whatsapp"></i> Ayo Konsultasi Sekarang
+</div>
 </body>
 </html>
