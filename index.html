@@ -175,56 +175,130 @@
         </div>
     </div>
     <div class="stats" data-aos="fade-up" data-aos-delay="1000">
-        <h3>Jumlah Joki yang Telah Dikerjakan</h3>
-        <p class="counter" id="jokiCount">0</p>
-    </div>
-</section>
-
-<style>
-    .review-container {
+        <h3>Statistik</h3>
+        <div class="stat-items">
+          <div class="stat-item">
+            <h4>Rating dari jasa kami</h4>
+            <p class="counter">⭐⭐⭐⭐⭐</p>
+          </div>
+          <div class="stat-item">
+            <h4>Jumlah Joki yang Telah Dikerjakan</h4>
+            <p class="counter" id="jokiCount">0</p>
+          </div>
+          <div class="stat-item">
+            <h4>Total Pelanggan</h4>
+            <p class="counter" id="customerCount">0</p>
+          </div>
+          <div class="stat-item">
+            <h4>Universitas Berbeda</h4>
+            <p class="counter" id="universityCount">0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <style>
+      .stats-container {
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
-    }
-    .review {
-        background: #ffffff;
-        padding: 20px;
-        width: 80%;
-        max-width: 300px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-    .stats {
         margin-top: 30px;
-        background: #1a73e8;
+        animation: fadeIn 1s ease-in-out;
+      }
+      .stats {
+        background: linear-gradient(135deg, #1a73e8, #4285f4);
         color: white;
-        padding: 15px;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 1000px; /* Sesuaikan dengan kebutuhan */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+      }
+      .stats:hover {
+        transform: scale(1);
+      }
+      .stat-items {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+      }
+      @media (max-width: 1024px) {
+        .stat-items {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      /* Media query tambahan untuk layar dengan lebar maksimal 600px */
+      @media (max-width: 600px) {
+        .stat-items {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          padding: 15px;
+        }
+        .counter {
+          font-size: 28px;
+        }
+      }
+      .stat-item {
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 10px;
-        display: inline-block;
-    }
-    .counter {
+        transition: background 0.3s;
+      }
+      .stat-item:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+      .counter {
         font-size: 36px;
         font-weight: bold;
-    }
-</style>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let count = 0;
-        let target = 250; // Ganti dengan jumlah aktual joki yang telah dikerjakan
+        animation: pulse 1s infinite;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+    </style>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let jokiCount = 0;
+        let customerCount = 0;
+        let universityCount = 0;
+        let jokiTarget = 250;
+        let customerTarget = 150;
+        let universityTarget = 50;
         let interval = setInterval(() => {
-            if (count < target) {
-                count += 5;
-                document.getElementById("jokiCount").textContent = count;
-            } else {
-                document.getElementById("jokiCount").textContent = target;
-                clearInterval(interval);
-            }
+          if (jokiCount < jokiTarget) {
+            jokiCount += 5;
+            document.getElementById("jokiCount").textContent = jokiCount;
+          } else {
+            document.getElementById("jokiCount").textContent = jokiTarget;
+          }
+          if (customerCount < customerTarget) {
+            customerCount += 3;
+            document.getElementById("customerCount").textContent = customerCount;
+          } else {
+            document.getElementById("customerCount").textContent = customerTarget;
+          }
+          if (universityCount < universityTarget) {
+            universityCount += 1;
+            document.getElementById("universityCount").textContent = universityCount;
+          } else {
+            document.getElementById("universityCount").textContent = universityTarget;
+          }
+          if (jokiCount >= jokiTarget && customerCount >= customerTarget && universityCount >= universityTarget) {
+            clearInterval(interval);
+          }
         }, 50);
-    });
-</script>
+      });
+    </script>
 
 <section id="kontak" data-aos="fade-up" data-aos-delay="1000">
     <h2>Hubungi Kami</h2>
