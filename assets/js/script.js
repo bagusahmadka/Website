@@ -1,3 +1,47 @@
+// Typing Effect Logic
+const typedTextSpan = document.querySelector(".typed-text");
+const cursorSpan = document.querySelector(".typed-cursor");
+
+const textArray = ["Target", "Tugas Kuliah", "Website Bisnis", "Desain Visual", "Karya Tulis"];
+const typingDelay = 100;
+const erasingDelay = 50;
+const newTextDelay = 2000;
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } else {
+    cursorSpan.classList.remove("typing");
+    setTimeout(erase, newTextDelay);
+  }
+}
+
+function erase() {
+  if (charIndex > 0) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+    charIndex--;
+    setTimeout(erase, erasingDelay);
+  } else {
+    cursorSpan.classList.remove("typing");
+    textArrayIndex++;
+    if(textArrayIndex >= textArray.length) textArrayIndex = 0;
+    setTimeout(type, typingDelay + 1100);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  if(typedTextSpan && cursorSpan) {
+    typedTextSpan.textContent = "";
+    setTimeout(type, newTextDelay + 250);
+  }
+});
+
 // Initialize Animations
 AOS.init({
   duration: 800,
@@ -291,3 +335,106 @@ if (waForm) {
     }
   });
 }
+
+// FOMO Notification Logic
+const fomoData = [
+  { message: "Mahasiswa dari <strong>UGM</strong> baru saja memesan <strong>Cek Turnitin</strong>", time: "2 menit yang lalu" },
+  { message: "Klien UMKM baru saja memesan <strong>Jasa Web Dev</strong>", time: "15 menit yang lalu" },
+  { message: "Seseorang dari <strong>UI</strong> baru saja memesan <strong>Desain PPT</strong>", time: "1 jam yang lalu" },
+  { message: "Mahasiswa <strong>ITB</strong> baru saja memesan <strong>Jasa Karya Tulis</strong>", time: "Beberapa saat yang lalu" },
+  { message: "Klien Corporate memesan <strong>Editing Video</strong>", time: "30 menit yang lalu" },
+  { message: "Seseorang baru saja memesan <strong>Optimasi PC</strong>", time: "5 menit yang lalu" }
+];
+
+function showFomo() {
+  const fomoNotif = document.getElementById('fomo-notification');
+  const fomoMsg = document.getElementById('fomo-message');
+  const fomoTime = document.getElementById('fomo-time');
+  
+  if(!fomoNotif) return;
+
+  const randomFomo = fomoData[Math.floor(Math.random() * fomoData.length)];
+  
+  fomoMsg.innerHTML = randomFomo.message;
+  fomoTime.textContent = randomFomo.time;
+  
+  fomoNotif.classList.add('show');
+  
+  setTimeout(() => {
+    fomoNotif.classList.remove('show');
+  }, 5000); // Tampil selama 5 detik
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(() => {
+    showFomo();
+    setInterval(showFomo, Math.floor(Math.random() * 15000) + 20000); // Muncul setiap 20-35 detik
+  }, 5000); // Delay pertama kali muncul 5 detik setelah load
+});
+
+// Portfolio Modal Logic
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById('portfolio-modal');
+  const overlay = document.querySelector('.modal-overlay');
+  const closeBtn = document.querySelector('.close-modal');
+  const modalOrderBtn = document.getElementById('modal-order-btn');
+  const selectLayanan = document.getElementById('layananPilihan');
+  
+  if (!modal) return;
+
+  const modalPreview = document.getElementById('modal-preview');
+  const modalIcon = document.getElementById('modal-icon');
+  const modalTag = document.getElementById('modal-tag');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+
+  let currentSelectedService = "";
+  const serviceMap = {
+    "Web Development": "Pembuatan Web/Aplikasi",
+    "Desain Grafis": "Desain Grafis/PPT",
+    "Editing Video": "Editing Video",
+    "Karya Tulis": "Bantuan Akademik/Makalah",
+    "Teknik Sipil": "Desain Teknik Sipil",
+    "Ilustrasi": "Jasa Gambar/Ilustrasi"
+  };
+
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.addEventListener('click', function() {
+      // Get data from clicked card
+      const previewBg = this.querySelector('.portfolio-preview').style.background;
+      const iconClass = this.querySelector('.portfolio-preview i').className;
+      const tagText = this.querySelector('.portfolio-tag').textContent;
+      const titleText = this.querySelector('h3').textContent;
+      const descText = this.querySelector('p').textContent;
+
+      // Set data to modal
+      modalPreview.style.background = previewBg;
+      modalIcon.className = iconClass;
+      modalTag.textContent = tagText;
+      modalTitle.textContent = titleText;
+      modalDesc.textContent = descText;
+
+      currentSelectedService = serviceMap[tagText] || "Layanan Lainnya";
+
+      // Show modal
+      modal.classList.add('show');
+    });
+  });
+
+  if (modalOrderBtn) {
+    modalOrderBtn.addEventListener('click', function() {
+      if (selectLayanan && currentSelectedService) {
+        selectLayanan.value = currentSelectedService;
+      }
+      closeModal();
+    });
+  }
+
+  // Close Modal functions
+  function closeModal() {
+    modal.classList.remove('show');
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', closeModal);
+});

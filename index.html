@@ -9,7 +9,7 @@
   <meta property="og:title" content="Technorra | Agensi Digital & Akademik">
   <meta property="og:description"
     content="Mitra terpadu untuk pendampingan akademik, pembuatan web, desain, dan optimalisasi perangkat. Solusi cerdas, cepat, dan terpercaya.">
-  <meta property="og:image" content="assets/img/technorra_hero.png">
+  <meta property="og:image" content="assets/img/technorra_hero.webp">
   <meta property="og:url" content="https://technorra.com">
   <meta name="twitter:card" content="summary_large_image">
   <title>Technorra | Agensi Digital & Akademik</title>
@@ -77,7 +77,7 @@
   <section class="hero" id="tentang">
     <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
       <div class="badge">🚀 Profesional Digital & Academic Agency</div>
-      <h1>Wujudkan Target Anda dengan Bantuan Profesional</h1>
+      <h1>Wujudkan <span class="typed-text">Target</span><span class="typed-cursor">|</span> Anda dengan Bantuan Profesional</h1>
       <p>Technorra hadir sebagai mitra strategis bagi mahasiswa dan profesional. Kami menyediakan ekosistem layanan digital terpadu mulai dari pendampingan akademik berkualitas tinggi hingga solusi teknologi mutakhir untuk performa perangkat Anda.</p>
       <div class="hero-buttons">
         <a href="#layanan" class="btn"><i class="fas fa-rocket"></i> Eksplor Layanan</a>
@@ -85,7 +85,7 @@
       </div>
     </div>
     <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-      <img src="assets/img/technorra_hero.png" alt="Ilustrasi Layanan Digital Technorra">
+      <img src="assets/img/technorra_hero.webp" alt="Ilustrasi Layanan Digital Technorra" loading="lazy">
     </div>
   </section>
 
@@ -357,6 +357,25 @@
     </div>
   </section>
 
+  <!-- Portfolio Modal / Lightbox -->
+  <div id="portfolio-modal" class="portfolio-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <span class="close-modal"><i class="fas fa-times"></i></span>
+      <div class="modal-content">
+        <div id="modal-preview" class="modal-preview">
+          <i id="modal-icon" class="fas fa-laptop-code"></i>
+        </div>
+        <div class="modal-info">
+          <span id="modal-tag" class="portfolio-tag">Kategori</span>
+          <h3 id="modal-title">Judul Portfolio</h3>
+          <p id="modal-desc">Deskripsi detail portfolio.</p>
+          <a href="#kontak" id="modal-order-btn" class="btn modal-btn">Pesan Layanan Serupa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Review Section -->
   <section id="review" style="background: var(--bg-color);">
     <h2 class="section-title" data-aos="fade-up">Apa Kata Klien Kami?</h2>
@@ -616,6 +635,17 @@
     <p>&copy; <span id="currentYear">2026</span> Technorra. Didesain dengan <i class="fas fa-heart" style="color: #ef4444;"></i>
       untuk Pelanggan.</p>
   </footer>
+
+  <!-- FOMO Notification -->
+  <div id="fomo-notification" class="fomo-notification">
+    <div class="fomo-img">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="fomo-text">
+      <p id="fomo-message"></p>
+      <span id="fomo-time"></span>
+    </div>
+  </div>
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/6282328143785" class="whatsapp-float" target="_blank" data-aos="zoom-in" data-aos-delay="500">
