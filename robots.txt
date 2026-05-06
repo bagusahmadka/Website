@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://technorra.vercel.app/sitemap.xml
